@@ -16,3 +16,15 @@ def home(req):
     }
 
     return render(req, "core/home.html", context)
+
+
+def about(req):
+    chefs = Chef.objects.all()
+    contact_info = ContactInfo.objects.first()
+
+    context = {
+        "chefs": chefs,
+        "contact_info": contact_info,
+    }
+
+    return render(req, "core/about.html", context)

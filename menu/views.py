@@ -1,3 +1,12 @@
 from django.shortcuts import render
+from .models import Category, MenuItem
 
-# Create your views here.
+
+def menu(req):
+    categories = Category.objects.filter(is_active=True).prefetch_related(
+        "menuitem_set"
+    )
+
+    context = {"categories": categories}
+
+    return render(req, "menu/menu.html")
