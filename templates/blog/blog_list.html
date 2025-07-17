@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Blog - Fine Dining Restaurant
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="blog-bg h-[40vh] flex items-center justify-center text-center text-white">
+      <div>
+        <h1 class="font-great-vibes text-6xl md:text-8xl text-orange-400">Blog</h1>
+        <p class="text-lg mt-4">
+          <a class="hover:text-orang-600" href="#">HOME</a>
+          <span class="mx-2">&gt;</span> Contact <span class="mx-2">&gt;</span>
+        </p>
+      </div>
+    </section>
+    <section class="py-20">
+      <div class="container-blog mx-auto px-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white rounded-lg card-blog">
+            <img alt="A top-down view of various spices and herbs arranged in bowls on a wooden table." class="w-full h-68 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6L9B62I4KRvtrprM3G3Htq0_P0qVVhQrB3-u-D27PGOEBbpECpoZz48nFEUBaC5mTrWW-zWnYYoUYj6iy23i2glpDn4R9ljfXCKauvuAFhBNX4KlbohNKX-sWeAgrIkbnikQfdoM0-9S8sSkQKnGSmRhnlZVpNgIrqVDnIX0xf_N7ME9KPpUv4hFesag1W7w9bEqpXVomGFwy2r3_bQLM4ZoyS0VmW5JSrZV159S__ZynLplpBcFKgsAJgarw7NvHox6y3wNO8-Yr" />
+            <div class="p-6">
+              <p class="text-gray-500 text-sm mb-2">June 25, 2019</p>
+              <h3 class="text-xl font-semibold mb-4 text-black"><a href="#">Taste the delicious foods in Asia</a></h3>
+              <div class="flex justify-between items-center text-gray-500 text-sm">
+                <a class="hover:text-orange-600 flex text-black" href="#">
+                  <span>Read more</span>
+                  <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                  </svg>
+                </a>
+                <span>💬 3</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg card-blog">
+            <img alt="A top-down view of various spices and herbs arranged in bowls on a wooden table." class="w-full h-68 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6L9B62I4KRvtrprM3G3Htq0_P0qVVhQrB3-u-D27PGOEBbpECpoZz48nFEUBaC5mTrWW-zWnYYoUYj6iy23i2glpDn4R9ljfXCKauvuAFhBNX4KlbohNKX-sWeAgrIkbnikQfdoM0-9S8sSkQKnGSmRhnlZVpNgIrqVDnIX0xf_N7ME9KPpUv4hFesag1W7w9bEqpXVomGFwy2r3_bQLM4ZoyS0VmW5JSrZV159S__ZynLplpBcFKgsAJgarw7NvHox6y3wNO8-Yr" />
+            <div class="p-6">
+              <p class="text-gray-500 text-sm mb-2">June 25, 2019</p>
+              <h3 class="text-xl font-semibold mb-4 text-black"><a href="#">Taste the delicious foods in Asia</a></h3>
+              <div class="flex justify-between items-center text-gray-500 text-sm">
+                <a class="hover:text-orange-600 flex text-black" href="#">
+                  <span>Read more</span>
+                  <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                  </svg>
+                </a>
+                <span>💬 3</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg card-blog">
+            <img alt="A top-down view of various spices and herbs arranged in bowls on a wooden table." class="w-full h-68 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6L9B62I4KRvtrprM3G3Htq0_P0qVVhQrB3-u-D27PGOEBbpECpoZz48nFEUBaC5mTrWW-zWnYYoUYj6iy23i2glpDn4R9ljfXCKauvuAFhBNX4KlbohNKX-sWeAgrIkbnikQfdoM0-9S8sSkQKnGSmRhnlZVpNgIrqVDnIX0xf_N7ME9KPpUv4hFesag1W7w9bEqpXVomGFwy2r3_bQLM4ZoyS0VmW5JSrZV159S__ZynLplpBcFKgsAJgarw7NvHox6y3wNO8-Yr" />
+            <div class="p-6">
+              <p class="text-gray-500 text-sm mb-2">June 25, 2019</p>
+              <h3 class="text-xl font-semibold mb-4 text-black"><a href="#">Taste the delicious foods in Asia</a></h3>
+              <div class="flex justify-between items-center text-gray-500 text-sm">
+                <a class="hover:text-orange-600 flex text-black" href="#">
+                  <span>Read more</span>
+                  <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                  </svg>
+                </a>
+                <span>💬 3</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg card-blog">
+            <img alt="A top-down view of various spices and herbs arranged in bowls on a wooden table." class="w-full h-68 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6L9B62I4KRvtrprM3G3Htq0_P0qVVhQrB3-u-D27PGOEBbpECpoZz48nFEUBaC5mTrWW-zWnYYoUYj6iy23i2glpDn4R9ljfXCKauvuAFhBNX4KlbohNKX-sWeAgrIkbnikQfdoM0-9S8sSkQKnGSmRhnlZVpNgIrqVDnIX0xf_N7ME9KPpUv4hFesag1W7w9bEqpXVomGFwy2r3_bQLM4ZoyS0VmW5JSrZV159S__ZynLplpBcFKgsAJgarw7NvHox6y3wNO8-Yr" />
+            <div class="p-6">
+              <p class="text-gray-500 text-sm mb-2">June 25, 2019</p>
+              <h3 class="text-xl font-semibold mb-4 text-black"><a href="#">Taste the delicious foods in Asia</a></h3>
+              <div class="flex justify-between items-center text-gray-500 text-sm">
+                <a class="hover:text-orange-600 flex text-black" href="#">
+                  <span>Read more</span>
+                  <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                  </svg>
+                </a>
+                <span>💬 3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center mt-12 space-x-2">
+          <a class="px-4 py-2 border rounded-full text-gray-500 hover:bg-orange-400 hover:text-white" href="#">&lt;</a>
+          <a class="px-4 py-2 border rounded-full text-gray-500 hover:bg-orange-400 hover:text-white" href="#">1</a>
+          <a class="px-4 py-2 border rounded-full bg-orange-400 text-white" href="#">2</a>
+          <a class="px-4 py-2 border rounded-full text-gray-500 hover:bg-orange-400 hover:text-white" href="#">3</a>
+          <a class="px-4 py-2 border rounded-full text-gray-500 hover:bg-orange-400 hover:text-white" href="#">4</a>
+          <a class="px-4 py-2 border rounded-full text-gray-500 hover:bg-orange-400 hover:text-white" href="#">5</a>
+          <a class="px-4 py-2 border rounded-full text-gray-500 hover:bg-orange-400 hover:text-white" href="#">&gt;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}

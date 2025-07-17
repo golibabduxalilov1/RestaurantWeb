@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  About Us - Fine Dining Restaurant
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/about.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <section class="bg-about h-[40vh] flex items-center justify-center text-center text-white">
+    <div>
+      <h1 class="font-great-vibes text-6xl md:text-8xl text-orange-400">About</h1>
+      <p class="text-lg mt-4">
+        <a class="hover:text-orang-600" href="#">HOME</a>
+        <span class="mx-2">&gt;</span> Contact <span class="mx-2">&gt;</span>
+      </p>
+    </div>
+  </section>
+  <section class="py-24 px-4 md:px-12">
+    <div class="container mx-auto flex flex-col lg:flex-row items-center gap-12">
+      <div class="lg:w-1/2">
+        <div class="text-center lg:text-left mb-8">
+          <h2 class="text-7xl font-great-vibes text-orange-400">Appetizer Restaurant</h2>
+          <div class="inline-block my-4">
+            <div class="w-16 h-1 bg-orange-400"></div>
+          </div>
+        </div>
+        <p class="text-gray-600 leading-relaxed mb-6">On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+        <div class="flex justify-center items-center my-8">
+          <button class="bg-orange-400 rounded-full w-20 h-20 flex items-center justify-center text-white text-4xl shadow-lg"><span class="material-icons text-5xl">play_arrow</span></button>
+        </div>
+      </div>
+      <div class="lg:w-1/2">
+        <img alt="A selection of fresh produce and ingredients on a wooden table." class="rounded-lg shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCldjjAtlvIfz8MOjafURMnwBQkz1bS7XIab4XqqD9S-xMHZmyHKXau-vjZmavZc0Z6M9Dmxj60Cum9M1C6nTTUKNOaOiv6w0kFMjxJfAQlXTI3Nr6CEIJ18HhNcnE2szKKBkQG0pzI4eFX5Jd_tPssG4rhe9Act-NPqZ5Qk_GQn-ovifUAnJCGhCJRpRETVbagJIaM1GK-hxBUaLKp933HnEZ7xv0SEDmGSbJNND0plIivbmavacNEiryEhI39sVshdmo_WPvdlic0" />
+      </div>
+    </div>
+    <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center mt-20">
+      <div>
+        <p class="text-5xl font-bold text-orange-400">18</p>
+        <p class="text-gray-600">Years of Experienced</p>
+      </div>
+      <div>
+        <p class="text-5xl font-bold text-orange-400">15,000</p>
+        <p class="text-gray-600">Happy Customers</p>
+      </div>
+      <div>
+        <p class="text-5xl font-bold text-orange-400">100</p>
+        <p class="text-gray-600">Menus</p>
+      </div>
+      <div>
+        <p class="text-5xl font-bold text-orange-400">20</p>
+        <p class="text-gray-600">Staffs</p>
+      </div>
+    </div>
+  </section>
+  <section class="bg-gray-50 py-24 px-4 md:px-12">
+    <div class="container mx-auto text-center">
+      <h2 class="text-7xl font-great-vibes text-orange-400">Catering Services</h2>
+      <div class="inline-block my-4">
+        <div class="w-16 h-1 bg-orange-400"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-12 mt-12">
+        <div class="flex flex-col items-center">
+          <div class="bg-orange-400 rounded-full w-24 h-24 flex items-center justify-center mb-6">
+            <span class="material-icons text-white text-5xl">cake</span>
+          </div>
+          <h3 class="text-2xl font-semibold mb-2 text-black">Birthday Party</h3>
+          <p class="text-gray-600 leading-relaxed">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="bg-orange-400 rounded-full w-24 h-24 flex items-center justify-center mb-6">
+            <span class="material-icons text-white text-5xl">business_center</span>
+          </div>
+          <h3 class="text-2xl font-semibold mb-2 text-black">Business Meetings</h3>
+          <p class="text-gray-600 leading-relaxed">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="bg-orange-400 rounded-full w-24 h-24 flex items-center justify-center mb-6">
+            <span class="material-icons text-white text-5xl">favorite</span>
+          </div>
+          <h3 class="text-2xl font-semibold mb-2 text-black">Wedding Party</h3>
+          <p class="text-gray-600 leading-relaxed">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-24 px-4 md:px-12">
+    <div class="container mx-auto text-center">
+      <h2 class="text-7xl font-great-vibes text-orange-400">Our Master Chef</h2>
+      <div class="inline-block my-4">
+        <div class="w-16 h-1 bg-orange-400"></div>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        <div class="text-center">
+          <img alt="Chef John Smooth" class="w-full h-80 object-cover rounded-t-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB36Nz_Y6jhzEv6oEQXFA7mlHqXr6iz91NlSVbfxXbLUvKFS0GaYUeI6lRCd_Ew4xKBwgdbkIzon_W5KbXeIxWhi-7YaTst6n4YSdFRVrUd1v4BWGAzW_RN5kKQAmm-L0crnZDoLArjTUVI-OX-ioBaWLtPA8_0QzIqXF0goB0yVVkKLh1m2tTOq16tWgvvXKPqMUUpwnS4N--RmbCVUG65c2SVbyXIS7o_Db6hEOG-hUNw_R6D17K64V6Fglo55qakdp7WXxhyUi5T" />
+          <div class="bg-gray-50 p-6 rounded-b-lg">
+            <h3 class="text-xl font-semibold text-black">John Smooth</h3>
+            <p class="text-gray-500 my-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <div class="flex justify-center space-x-3">
+              <a class="text-blue-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22.46,6C21.75,6.33 21,6.5 20.2,6.58C21,6.11 21.6,5.34 21.88,4.42C21.17,4.85 20.38,5.17 19.53,5.36C18.87,4.66 17.9,4.2 16.8,4.2C14.68,4.2 12.97,5.92 12.97,8.04C12.97,8.36 13,8.67 13.09,8.96C9.53,8.78 6.43,7.15 4.28,4.73C3.91,5.36 3.7,6.14 3.7,6.97C3.7,8.32 4.42,9.52 5.5,10.22C4.88,10.2 4.28,10.03 3.78,9.75V9.8C3.78,11.79 5.18,13.45 7.13,13.84C6.78,13.93 6.4,14 6,14C5.73,14 5.47,13.97 5.22,13.92C5.75,15.54 7.27,16.68 9.1,16.71C7.71,17.79 5.92,18.43 4,18.43C3.68,18.43 3.36,18.41 3.05,18.36C4.66,19.42 6.58,20.03 8.63,20.03C16.79,20.03 20.48,13.37 20.48,7.5C20.48,7.29 20.48,7.09 20.47,6.89C21.25,6.35 21.92,5.71 22.46,5Z"></path>
+                </svg>
+              </a>
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.34 9.38l-4.5 2.5c-.28.15-.61-.06-.61-.38V9.5c0-.32.33-.53.61-.38l4.5 2.5c.28.16.28.59 0 .76z"></path>
+                </svg>
+              </a>
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.04c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm-2.22 14.65c-.71 0-1.28-.57-1.28-1.28s.57-1.28 1.28-1.28 1.28.57 1.28 1.28-.57 1.28-1.28 1.28zm2.22-3.41c0 .71-.57 1.28-1.28 1.28s-1.28-.57-1.28-1.28v-4.57c0-.71.57-1.28 1.28-1.28s1.28.57 1.28 1.28v4.57z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <img alt="Chef Rebeca Welson" class="w-full h-80 object-cover rounded-t-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYrOBDWJU1N_8bId7vQ4hu2NCnMvKwa_uHOnfGurV5AtS9PaKkNznsSPjoxhK_yDedEmlQwSKWiZ0RL3IyQrcfY4rMKT9FDOvdF5aqEH6aVIN7_T3EAbHfYUVFkV6yXGthTV7D9Nqcgkc5i5qzsIOKsQix9Rl3pD4zmpFu-T04u_dM0iNSD0iro2qiw_K741CiefFYivPrZV6-llc8KHQxVPe901rZIBDUtCum_NxqDuKgt7pST-kSYtqvo5Ri45UCXN1gCismIJ5W" />
+          <div class="bg-gray-50 p-6 rounded-b-lg">
+            <h3 class="text-xl font-semibold text-black">Rebeca Welson</h3>
+            <p class="text-gray-500 my-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <div class="flex justify-center space-x-3">
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22.46,6C21.75,6.33 21,6.5 20.2,6.58C21,6.11 21.6,5.34 21.88,4.42C21.17,4.85 20.38,5.17 19.53,5.36C18.87,4.66 17.9,4.2 16.8,4.2C14.68,4.2 12.97,5.92 12.97,8.04C12.97,8.36 13,8.67 13.09,8.96C9.53,8.78 6.43,7.15 4.28,4.73C3.91,5.36 3.7,6.14 3.7,6.97C3.7,8.32 4.42,9.52 5.5,10.22C4.88,10.2 4.28,10.03 3.78,9.75V9.8C3.78,11.79 5.18,13.45 7.13,13.84C6.78,13.93 6.4,14 6,14C5.73,14 5.47,13.97 5.22,13.92C5.75,15.54 7.27,16.68 9.1,16.71C7.71,17.79 5.92,18.43 4,18.43C3.68,18.43 3.36,18.41 3.05,18.36C4.66,19.42 6.58,20.03 8.63,20.03C16.79,20.03 20.48,13.37 20.48,7.5C20.48,7.29 20.48,7.09 20.47,6.89C21.25,6.35 21.92,5.71 22.46,5Z"></path>
+                </svg>
+              </a>
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.34 9.38l-4.5 2.5c-.28.15-.61-.06-.61-.38V9.5c0-.32.33-.53.61-.38l4.5 2.5c.28.16.28.59 0 .76z"></path>
+                </svg>
+              </a>
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.04c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm-2.22 14.65c-.71 0-1.28-.57-1.28-1.28s.57-1.28 1.28-1.28 1.28.57 1.28 1.28-.57 1.28-1.28 1.28zm2.22-3.41c0 .71-.57 1.28-1.28 1.28s-1.28-.57-1.28-1.28v-4.57c0-.71.57-1.28 1.28-1.28s1.28.57 1.28 1.28v4.57z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <img alt="Chef Kharl Branyt" class="w-full h-80 object-cover rounded-t-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX4vFwfBkV_eSxoZfJkmEMmT5MAtOYsgxaTK4zLbpowwXgZ1D8JBupL8aY4rfL5ZFEuXeMGHn-qo2RewP0Lw_swnVpCfR-HtlC9-z0RlibD3kuzKd5Hrzk2N-GgMG-8jRrlObU2Xv0hYbMDSjaQNf-An_oAtVAdj_W3r3mcAt0YLySC-9MeZCmYiL7caKppe_0SOvbi0WeYJDnlJLBaRI8YJRTGMU1F5IitIUIda1pNpST1YUUCeJBuharhLHpdv73S8hCxLWNak32" />
+          <div class="bg-gray-50 p-6 rounded-b-lg">
+            <h3 class="text-xl font-semibold text-black">Kharl Branyt</h3>
+            <p class="text-gray-500 my-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <div class="flex justify-center space-x-3">
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22.46,6C21.75,6.33 21,6.5 20.2,6.58C21,6.11 21.6,5.34 21.88,4.42C21.17,4.85 20.38,5.17 19.53,5.36C18.87,4.66 17.9,4.2 16.8,4.2C14.68,4.2 12.97,5.92 12.97,8.04C12.97,8.36 13,8.67 13.09,8.96C9.53,8.78 6.43,7.15 4.28,4.73C3.91,5.36 3.7,6.14 3.7,6.97C3.7,8.32 4.42,9.52 5.5,10.22C4.88,10.2 4.28,10.03 3.78,9.75V9.8C3.78,11.79 5.18,13.45 7.13,13.84C6.78,13.93 6.4,14 6,14C5.73,14 5.47,13.97 5.22,13.92C5.75,15.54 7.27,16.68 9.1,16.71C7.71,17.79 5.92,18.43 4,18.43C3.68,18.43 3.36,18.41 3.05,18.36C4.66,19.42 6.58,20.03 8.63,20.03C16.79,20.03 20.48,13.37 20.48,7.5C20.48,7.29 20.48,7.09 20.47,6.89C21.25,6.35 21.92,5.71 22.46,5Z"></path>
+                </svg>
+              </a>
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.34 9.38l-4.5 2.5c-.28.15-.61-.06-.61-.38V9.5c0-.32.33-.53.61-.38l4.5 2.5c.28.16.28.59 0 .76z"></path>
+                </svg>
+              </a>
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.04c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm-2.22 14.65c-.71 0-1.28-.57-1.28-1.28s.57-1.28 1.28-1.28 1.28.57 1.28 1.28-.57 1.28-1.28 1.28zm2.22-3.41c0 .71-.57 1.28-1.28 1.28s-1.28-.57-1.28-1.28v-4.57c0-.71.57-1.28 1.28-1.28s1.28.57 1.28 1.28v4.57z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <img alt="Chef Luke Simon" class="w-full h-80 object-cover rounded-t-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADn41aprGMD4YGOExGrSzoAhX2RceOMNBeqTp8zaOzEBiHvUxkB9iGBh9PoWPbkdAGWElKHn5BdhYZc9gXQ8S11ZsS6gmu8CQ6XysZ2PPbszlptHs7NSKEczWP0F6vgXrOL2MDff6Iamg0AtTW39JhXqH0tBQpV8ddCemgn3BfDz3_Uesv1dKo-V2FNrsVr3dwSMI784dPyNGcIAbI53xFRPhrSRY6xExR7rGqlbNZhbkHHMuSCNyngYPvjejKKv6Lp2Gy8wMXRPTx" />
+          <div class="bg-gray-50 p-6 rounded-b-lg">
+            <h3 class="text-xl font-semibold text-black">Luke Simon</h3>
+            <p class="text-gray-500 my-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <div class="flex justify-center space-x-3">
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22.46,6C21.75,6.33 21,6.5 20.2,6.58C21,6.11 21.6,5.34 21.88,4.42C21.17,4.85 20.38,5.17 19.53,5.36C18.87,4.66 17.9,4.2 16.8,4.2C14.68,4.2 12.97,5.92 12.97,8.04C12.97,8.36 13,8.67 13.09,8.96C9.53,8.78 6.43,7.15 4.28,4.73C3.91,5.36 3.7,6.14 3.7,6.97C3.7,8.32 4.42,9.52 5.5,10.22C4.88,10.2 4.28,10.03 3.78,9.75V9.8C3.78,11.79 5.18,13.45 7.13,13.84C6.78,13.93 6.4,14 6,14C5.73,14 5.47,13.97 5.22,13.92C5.75,15.54 7.27,16.68 9.1,16.71C7.71,17.79 5.92,18.43 4,18.43C3.68,18.43 3.36,18.41 3.05,18.36C4.66,19.42 6.58,20.03 8.63,20.03C16.79,20.03 20.48,13.37 20.48,7.5C20.48,7.29 20.48,7.09 20.47,6.89C21.25,6.35 21.92,5.71 22.46,5Z"></path>
+                </svg>
+              </a>
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm3.34 9.38l-4.5 2.5c-.28.15-.61-.06-.61-.38V9.5c0-.32.33-.53.61-.38l4.5 2.5c.28.16.28.59 0 .76z"></path>
+                </svg>
+              </a>
+              <a class="text-gray-400 hover:text-orange-400" href="#">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.04c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm-2.22 14.65c-.71 0-1.28-.57-1.28-1.28s.57-1.28 1.28-1.28 1.28.57 1.28 1.28-.57 1.28-1.28 1.28zm2.22-3.41c0 .71-.57 1.28-1.28 1.28s-1.28-.57-1.28-1.28v-4.57c0-.71.57-1.28 1.28-1.28s1.28.57 1.28 1.28v4.57z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-gray-50 py-24 px-4 md:px-12">
+    <div class="container mx-auto text-center">
+      <h2 class="text-7xl font-great-vibes text-orange-400">Happy Customer</h2>
+      <div class="inline-block my-4">
+        <div class="w-16 h-1 bg-orange-400"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-12 mt-12">
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <img alt="Customer Ion Töne" class="w-24 h-24 rounded-full mx-auto -mt-16 border-4 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-KllsSTwcVLOGgSzOirZiOoETqUWF399oT0xiGwpNUXP8-870iCTrkQjzzznN6j_tK2zH7Y3Pl7yfx905_1w5e6LNl7admrR5gxUHg4IZVw7AcMOqnKNm2gJ71hl5TFY645v52IX-u2U1C4uauSZWXlMYDr3BJBtFjYeM4gQ57R7PHN2eHWhf9lTzYfYxXwd6_9XOSERyrhc3kQ68SH_jSuah_7tezBFD3fiwXawtLQB0i93JvABT7nbYn3mbmJHJuI137XYK1yMQ" />
+          <p class="text-gray-600 italic my-6">"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."</p>
+          <p class="font-semibold text-black">Ion Töne</p>
+          <p class="text-gray-500">Customer</p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <img alt="Customer Jason McClean" class="w-24 h-24 rounded-full mx-auto -mt-16 border-4 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkg6YBLCa7vi_m16-_9WEZARHqk-0jWA0gbgmDe9eUkHACZzJa-aXOon_UxRBt2NpUXEB9BTeNUGjTfRnbDoifiT07-4MMeyPp5A-bDge2vK3zqSjU2sbninTIcHj2euECLcq37g1liANv1hNTRVGuHgPqlZhTjfb6Zx76HVqGQ1KTNn546FI-WsOofZlb8KpHp_8BBrPXBXjwz4hmdhpjwIrBemlN_FO8nArIVjJ26OANvD4g5WHenxH8UkPpI73pkNX5IB0tAffp" />
+          <p class="text-gray-600 italic my-6">"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."</p>
+          <p class="font-semibold text-black">Jason McClean</p>
+          <p class="text-gray-500">Customer</p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <img alt="Customer Mon Stevenson" class="w-24 h-24 rounded-full mx-auto -mt-16 border-4 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAUwTVIsa5RskBo23ka3YVeRlA5CdPeNub0VCArXe3BqizWwJdLxa9nR8QYvmDSxJFk9mYzjq_f3oODVyncrPnWGVvV9CZ4D5W6cnAOWzrJGYdHdNDztD5yjvEf9s0d3069HsVMcMf8IpMv9PdWqvmPHjfxfCNpt-5w1AdDoMXTiDq1tKen8kt27cUgkoZuwOo54aOS5x-6uQtZzR9xcDMDe-_u1KPk9IMpU9uPziCIUVMZoQtQXcUayTMOJqrkx8i5Fv2h8bfaUNs" />
+          <p class="text-gray-600 italic my-6">"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."</p>
+          <p class="font-semibold text-black">Mon Stevenson</p>
+          <p class="text-gray-500">Customer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+    <img alt="People dining in a restaurant" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUF6d61RsH7MjuIeP9Omd8-8DkXsR9SkVosIJd8TWFS9hoetGNTFUHvsgSj3YvUt8kRdV-pP4KSXeSaIQyIQorZx5W2o9Al-fhPmA79a6WalG6_ee4b08ikXBrI9XDHOB8aOLtuaSD1JgP31oJ-EjXtTVtiZKHSy1GkGQE5CRnjtvCyBSOpezka_fPg2b5zqeU21NgOVMtvyrDE1VxMOX8gtuAgQU9eobCO14zwih09auH1AMoYlIzRkSvNXRioBnRTk2-vwYy8vjf" />
+    <img alt="A variety of delicious food dishes" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmnGFBAi2quxxuqRp-rUxl3PbcSMN76RqJ-YuiVvh-PEyg-5hyRMMq6XXGcVXXQRI_OnH7pBFLfgjX3oAPc6cG_GBN37sPx9SSXJlan-1rROUVcRZxWruz-RD4LpZ5sdmiFD4jnP1Zkc4UkeO6Pk7oNxKOorBJI2hHKTcfC9iIRu3kiB51MPPvpHbe85-piHiDAZUZxGufaME3YMBifFKMT43pEqQyJsU4Lm3Aj_B0n2qFCj4vG39xTOgB2fHLxBt4w9pui0zB34iW" />
+    <img alt="A gourmet food platter" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa_nN7Q0Um2pbT_58wwi54oMh_alxlP8EO3GI7rGo8PQFv_qnGetoNwwlB7qtYVNHk-2rl1xuXVDI_UDWifB-BnvV-8MHH0BGQHPr9hCbehRUfrdKYtt7ZxPqyykkRPc3637z2YqeOnyK7YisiQjhRcll880kRL_OZrSmlLt7WNpyMoPO66w1BH8VmUAFg0rUjum36U8gcHc9DmDP-menuvnSM3r5Sm2wOpvTCB9z4sS-154RNBoJYjyTuiOiRY0MqeuYcdxt0B2-w" />
+    <img alt="A chef preparing food" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2ss4NYr9uLzx-BvURIGdkVd57xifZHBvakmqTuGf6qlMkHFxkN0JXjXQQ92xqC2sZlLgyeQ6-XK9lVpNPEai02EBPUkrr6Hni7ueuJEyNo3d2fjmsO7usCUvMFwSZIpMPA3SYCfgELx88JETeI2m9r-CVjdEzJ2yne4fGBFOLC7RmqPyGGZ2fAMcUjUGfujtJPCcmpconL1o-Br-gMSFKFWLRlzEY8AlHyb4jNd5JTH-_X3k8ZD7ag6jzhkhI7DdNMUIh4O8Bf-BD" />
+    <img alt="Wine bottles and glasses on a table" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz8-1rcK8kjBl0vNDoCVvWwqdGrzRT7v4VXzMaDPnbCxRxWHi7cO8Lb_EDhIr4-P0Fmv_HWWRcKVYdlz3xUhd8o8duODIsAu6BWGWzIjQ0Lv7lKqAY8XrXDssMqTN_zs1jbMIvm96v__6oYHVyCuqgqvDh1i4KFaIe19tIg5b44IBfobGzKdsQAl1xZ4188wWv5Fh02i8bAptwfYl1cisbKBliXiSVr-PT7ymniCy6diNyJAhdVcOGYbjoEKrBNgMoSA62m6y5yUoB" />
+    <img alt="A bartender pouring a drink" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdx7BaVSa10sHdaHIP7lN0z6-TBwHBpVEVwIk81bNid3TVBCrUF0i0gPLgaSXPXgDgfl5wlq_KeDagcoDcvLoka233LOQxLigpIJD5xIa_JwBgYNKtHQLqRA-sDRHb8knN-qmg2tQKIcfDedAfuohUjXDgs1qPko2cTRvPgZuvE4Dxzaq7DIu-PMooauFRIq_T5VNZqktcHGqtQ0wB7kgYi9YkJ8wMLFwyRkGVHzpdOqQOwuOH-3PCUwJIJDIsR5rjPypwLKnDziGj" />
+  </section>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% if messages %}
+  <div class="fixed top-20 right-4 z-40 space-y-2" id="messages-container">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} bg-{% if message.tags == 'success' %}
+          
+          green
+
+        {% elif message.tags == 'error' %}
+          
+          red
+
+        {% else %}
+          
+          blue
+
+        {% endif %}-100 border border-{% if message.tags == 'success' %}
+          
+          green
+
+        {% elif message.tags == 'error' %}
+          
+          red
+
+        {% else %}
+          
+          blue
+
+        {% endif %}-400 text-{% if message.tags == 'success' %}
+          
+          green
+
+        {% elif message.tags == 'error' %}
+          
+          red
+
+        {% else %}
+          
+          blue
+
+        {% endif %}-700 px-4 py-3 rounded max-w-sm">
+        <div class="flex items-center justify-between">
+          <span>{{ message }}</span>
+          <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-lg">&times;</button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    // Auto-hide messages after 5 seconds
+    setTimeout(function () {
+      const messagesContainer = document.getElementById('messages-container')
+      if (messagesContainer) {
+        messagesContainer.style.display = 'none'
+      }
+    }, 5000)
+  </script>
+{% endif %}

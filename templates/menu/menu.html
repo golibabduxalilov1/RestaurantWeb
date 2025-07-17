@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Menu - Fine Dining Restaurant
+{% endblock %}
+
+{% block content %}
+  <div class="pt-20">
+    <!-- Hero Section -->
+    <section class="relative h-96 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=1200');">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      <div class="relative z-10 flex items-center justify-center h-full">
+        <div class="text-center text-white">
+          <h1 class="text-5xl md:text-6xl font-bold mb-4">Our Menu</h1>
+          <p class="text-xl md:text-2xl">Exquisite Flavors Await</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        {% for category in categories %}
+          <div class="mb-16">
+            <div class="text-center mb-8">
+              <h2 class="text-4xl font-bold text-restaurant-dark mb-4">{{ category.name }}</h2>
+              {% if category.description %}
+                <p class="text-gray-600 text-lg">{{ category.description }}</p>
+              {% endif %}
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {% for item in category.menuitem_set.all %}
+                {% if item.is_available %}
+                  <div class="bg-restaurant-gray rounded-lg p-6 hover:shadow-lg transition duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                      <div class="flex-1">
+                        <h3 class="text-xl font-bold text-restaurant-dark mb-2">
+                          {{ item.name }}
+                          {% if item.is_featured %}
+                            <span class="inline-block bg-restaurant-gold text-white text-xs px-2 py-1 rounded-full ml-2">Featured</span>
+                          {% endif %}
+                        </h3>
+                        <p class="text-gray-600">{{ item.description }}</p>
+                      </div>
+                      {% if item.image %}
+                        <div class="ml-4 flex-shrink-0">
+                          <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-20 h-20 rounded-lg object-cover" />
+                        </div>
+                      {% endif %}
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-2xl font-bold text-restaurant-gold">${{ item.price }}</span>
+                      {% if item.is_featured %}
+                        <span class="text-sm text-restaurant-gold font-medium"><i class="fas fa-star mr-1"></i>Chef's Special</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              {% empty %}
+                <div class="col-span-full text-center py-8">
+                  <p class="text-gray-500">No items available in this category.</p>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% empty %}
+          <div class="text-center py-16">
+            <p class="text-gray-500 text-lg">Menu is being updated. Please check back soon.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-restaurant-dark text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-4">Ready to Dine?</h2>
+        <p class="text-xl mb-8">Make a reservation and experience our culinary excellence</p>
+        <a href="{% url 'reservations:make_reservation' %}" class="bg-restaurant-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300">Make Reservation</a>
+      </div>
+    </section>
+  </div>
+{% endblock %}

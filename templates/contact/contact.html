@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Contact - Fine Dining Restaurant
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/contact.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="bg-contact h-[40vh] flex items-center justify-center text-center text-white">
+      <div>
+        <h1 class="font-great-vibes text-6xl md:text-8xl text-orange-400">Contact Us</h1>
+        <p class="text-lg mt-4">
+          <a class="hover:text-orang-600" href="#">HOME</a>
+          <span class="mx-2">&gt;</span> Contact <span class="mx-2">&gt;</span>
+        </p>
+      </div>
+    </section>
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-7xl font-great-vibes text-orange-400 text-center">Contact information</h2>
+        <div class="w-20 h-1 bg-orange-500 my-4 mx-auto"></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-gray-600">
+          <div class="grid">
+            <p class="font-bold text-black">Address:</p>
+            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+          </div>
+          <div>
+            <p class="font-bold text-black">Phone:</p>
+            <p>
+              <a class="text-orange-400" href="tel:+1235235598">+ 1235 2355 98</a>
+            </p>
+          </div>
+          <div>
+            <p class="font-bold text-black">Email:</p>
+            <p>
+              <a class="text-orange-400" href="mailto:info@yoursite.com">info@yoursite.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-gray-50 py-24">
+      <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div class="bg-gray-200 h-full min-h-96 flex flex-col justify-center items-center text-gray-500">
+          <i class="material-icons text-4xl mb-4">error_outline</i>
+          <h3 class="text-xl font-semibold">Oops! Something went wrong.</h3>
+          <p class="text-sm">This page didn't load Google Maps correctly. See the JavaScript console for technical details.</p>
+        </div>
+        <div>
+          <h2 class="text-7xl font-great-vibes text-orange-400">Contact Us</h2>
+          <div class="w-20 h-1 bg-orange-500 my-4"></div>
+
+          <form action="#" class="space-y-4">
+            <div>
+              <input class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400" placeholder="Your Name" type="text" />
+            </div>
+            <div>
+              <input class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400" placeholder="Your Email" type="email" />
+            </div>
+            <div>
+              <input class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400" placeholder="Subject" type="text" />
+            </div>
+            <div>
+              <textarea class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400" placeholder="Message" rows="6"></textarea>
+            </div>
+            <div>
+              <button class="bg-orange-400 text-white px-8 py-3 rounded-md hover:bg-orange-600 transition duration-300" type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+      <img alt="People dining in a restaurant" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUF6d61RsH7MjuIeP9Omd8-8DkXsR9SkVosIJd8TWFS9hoetGNTFUHvsgSj3YvUt8kRdV-pP4KSXeSaIQyIQorZx5W2o9Al-fhPmA79a6WalG6_ee4b08ikXBrI9XDHOB8aOLtuaSD1JgP31oJ-EjXtTVtiZKHSy1GkGQE5CRnjtvCyBSOpezka_fPg2b5zqeU21NgOVMtvyrDE1VxMOX8gtuAgQU9eobCO14zwih09auH1AMoYlIzRkSvNXRioBnRTk2-vwYy8vjf" />
+      <img alt="A variety of delicious food dishes" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmnGFBAi2quxxuqRp-rUxl3PbcSMN76RqJ-YuiVvh-PEyg-5hyRMMq6XXGcVXXQRI_OnH7pBFLfgjX3oAPc6cG_GBN37sPx9SSXJlan-1rROUVcRZxWruz-RD4LpZ5sdmiFD4jnP1Zkc4UkeO6Pk7oNxKOorBJI2hHKTcfC9iIRu3kiB51MPPvpHbe85-piHiDAZUZxGufaME3YMBifFKMT43pEqQyJsU4Lm3Aj_B0n2qFCj4vG39xTOgB2fHLxBt4w9pui0zB34iW" />
+      <img alt="A gourmet food platter" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa_nN7Q0Um2pbT_58wwi54oMh_alxlP8EO3GI7rGo8PQFv_qnGetoNwwlB7qtYVNHk-2rl1xuXVDI_UDWifB-BnvV-8MHH0BGQHPr9hCbehRUfrdKYtt7ZxPqyykkRPc3637z2YqeOnyK7YisiQjhRcll880kRL_OZrSmlLt7WNpyMoPO66w1BH8VmUAFg0rUjum36U8gcHc9DmDP-menuvnSM3r5Sm2wOpvTCB9z4sS-154RNBoJYjyTuiOiRY0MqeuYcdxt0B2-w" />
+      <img alt="A chef preparing food" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2ss4NYr9uLzx-BvURIGdkVd57xifZHBvakmqTuGf6qlMkHFxkN0JXjXQQ92xqC2sZlLgyeQ6-XK9lVpNPEai02EBPUkrr6Hni7ueuJEyNo3d2fjmsO7usCUvMFwSZIpMPA3SYCfgELx88JETeI2m9r-CVjdEzJ2yne4fGBFOLC7RmqPyGGZ2fAMcUjUGfujtJPCcmpconL1o-Br-gMSFKFWLRlzEY8AlHyb4jNd5JTH-_X3k8ZD7ag6jzhkhI7DdNMUIh4O8Bf-BD" />
+      <img alt="Wine bottles and glasses on a table" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz8-1rcK8kjBl0vNDoCVvWwqdGrzRT7v4VXzMaDPnbCxRxWHi7cO8Lb_EDhIr4-P0Fmv_HWWRcKVYdlz3xUhd8o8duODIsAu6BWGWzIjQ0Lv7lKqAY8XrXDssMqTN_zs1jbMIvm96v__6oYHVyCuqgqvDh1i4KFaIe19tIg5b44IBfobGzKdsQAl1xZ4188wWv5Fh02i8bAptwfYl1cisbKBliXiSVr-PT7ymniCy6diNyJAhdVcOGYbjoEKrBNgMoSA62m6y5yUoB" />
+      <img alt="A bartender pouring a drink" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdx7BaVSa10sHdaHIP7lN0z6-TBwHBpVEVwIk81bNid3TVBCrUF0i0gPLgaSXPXgDgfl5wlq_KeDagcoDcvLoka233LOQxLigpIJD5xIa_JwBgYNKtHQLqRA-sDRHb8knN-qmg2tQKIcfDedAfuohUjXDgs1qPko2cTRvPgZuvE4Dxzaq7DIu-PMooauFRIq_T5VNZqktcHGqtQ0wB7kgYi9YkJ8wMLFwyRkGVHzpdOqQOwuOH-3PCUwJIJDIsR5rjPypwLKnDziGj" />
+    </section>
+  </main>
+{% endblock %}

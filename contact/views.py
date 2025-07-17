@@ -12,6 +12,7 @@ def contact(req):
             messages.success(
                 req, "Thank you for your message! We will get back to you soon."
             )
+            return redirect("contact:contact")
     else:
         form = ContactForm()
 

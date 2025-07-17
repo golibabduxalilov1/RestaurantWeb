@@ -1,0 +1,42 @@
+.hero-bg {
+  background-image: url("/static/images/bg_2.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-but {
+  margin-top: 24px;
+}
+.btn-primary {
+  background-color: rgb(251 146 60);
+  color: white;
+  border-radius: 2px;
+}
+.service-icon {
+  font-size: 54px;
+  color: #fff;
+  border-radius: 50%;
+  background: #000000;
+  padding: 38px;
+}
+
+.bg-exp {
+  background-image: url("/static/images/bg_4.jpg") !important;
+  background-size: cover;
+  background-position: right;
+}
+
+.play-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgb(251 146 60);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 0 10px rgb(251 146 60);
+}
+
+.location {
+  height: 40rem !important;
+}
