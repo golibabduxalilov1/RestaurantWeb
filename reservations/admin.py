@@ -1,9 +1,10 @@
 from django.contrib import admin
 from .models import Reservation
+from unfold.admin import ModelAdmin
 
 
 @admin.register(Reservation)
-class ReservationAdmin(admin.ModelAdmin):
+class ReservationAdmin(ModelAdmin):
 
     list_display = ["first_name", "last_name", "guest_count", "date", "time", "status"]
     list_filter = ["status", "date", "guest_count"]

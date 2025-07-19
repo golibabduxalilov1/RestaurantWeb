@@ -9,14 +9,18 @@
   <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 
+{% block extra_js %}
+  <script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
+
 {% block content %}
   <section class="hero-bg h-screen flex items-center justify-center text-white text-center pt-16">
     <div class="bg-black bg-opacity-50 p-8 md:p-16 rounded-lg">
       <h1 class="monoton-font text-6xl md:text-8xl mb-4 uppercase">The Best Place To</h1>
       <h2 class="monoton-font text-6xl md:text-8xl mb-4 uppercase">KICK YOUR DAY</h2>
       <div class="flex justify-center gap-3 hero-but">
-        <a class="btn-primary px-6 py-5 text-lg font-semibold" href="">Order Now</a>
-        <a class="btn-hidden border px-6 py-5 text-lg font-semibold" href="">View Menu</a>
+        <a class="btn-primary px-6 py-5 text-lg font-semibold" href="{% url 'reservation:make_reservation' %}">Order Now</a>
+        <a class="btn-hidden border px-6 py-5 text-lg font-semibold" href="{% url 'menu:menu' %}">View Menu</a>
       </div>
     </div>
   </section>
@@ -25,15 +29,22 @@
     <div class="container mx-auto text-center">
       <h2 class="text-7xl font-great-vibes text-orange-400">Appetizer Restaurant</h2>
       <div class="w-20 h-1 bg-orange-500 mx-auto my-4 mb-10"></div>
-      <p class="max-w-5xl mx-auto text-gray-500">On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+      <p class="max-w-5xl mx-auto text-gray-500 res-info">On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
     </div>
   </section>
 
   <section class="relative bg-cover bg-center bg-exp">
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div class="relative container mx-auto px-6 py-32 flex flex-col items-center">
-      <div class="play-button cursor-pointer">
+      <div class="play-button cursor-pointer" onclick="openVideo()">
         <span class="material-icons text-white text-4xl">play_arrow</span>
+      </div>
+
+      <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center">
+        <div class="relative max-w-4xl w-full mx-4">
+          <button onclick="closeVideo()" class="absolute -top-10 right-0 text-white text-2xl">&times;</button>
+          <iframe id="videoFrame" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
     <div class="relative bg-white py-12">
@@ -41,19 +52,19 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
           <div>
             <p class="text-5xl font-extrabold text-orange-400">18</p>
-            <p class="text-gray-500">Years of Experienced</p>
+            <p class="text-black">Years of Experienced</p>
           </div>
           <div>
             <p class="text-5xl font-extrabold text-orange-400">15,000</p>
-            <p class="text-gray-500">Happy Customer</p>
+            <p class="text-black">Happy Customer</p>
           </div>
           <div>
             <p class="text-5xl font-extrabold text-orange-400">100</p>
-            <p class="text-gray-500">Menus</p>
+            <p class="text-black">Menus</p>
           </div>
           <div>
             <p class="text-5xl font-extrabold text-orange-400">20</p>
-            <p class="text-gray-500">Staffs</p>
+            <p class="text-black">Staffs</p>
           </div>
         </div>
       </div>
@@ -90,47 +101,61 @@
     </div>
   </section>
 
+  {% comment %}menu items start{% endcomment %}
   <section class="py-20 bg-white">
-    <div class="container mx-auto px-6">
+    <div class="mx-auto sm:px-5 lg:px-10">
       <div class="text-center mb-12">
         <h2 class="text-7xl font-great-vibes text-orange-400">Our Menu</h2>
         <div class="w-20 h-1 bg-orange-500 mx-auto my-4 mb-10"></div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
-        {% for category in categories %}
-          <div>
-            <h3 class="text-3xl font-semibold mb-6 text-center">{{ category.name }}</h3>
-            {% for item in category.menuitem_set.all|slice:':3' %}
-              <div class="flex items-center mb-4">
-                {% if item.image %}
-                  <img alt="{{ item.name }}" class="w-16 h-16 rounded-full mr-4 object-cover" src="{{ item.image.url }}" />
-                {% else %}
-                  <img alt="{{ item.name }}" class="w-16 h-16 rounded-full mr-4 object-cover" src="{% static 'images/default-food.jpg' %}" />
-                {% endif %}
-                <div class="flex-grow">
-                  <div class="flex justify-between">
-                    <h4 class="font-semibold">{{ item.name }}</h4>
-                    <span class="text-orange-400 font-semibold">${{ item.price }}</span>
-                  </div>
-                  <p class="text-gray-500 text-sm">{{ item.description|truncatewords:10 }}</p>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        {% empty %}
-          <div class="col-span-3 text-center">
-            <p class="text-gray-500">No menu items available at the moment.</p>
-          </div>
-        {% endfor %}
-      </div>
+
       {% if categories %}
-        <div class="text-center mt-8">
-          <a href="" class="btn-primary px-6 py-3 text-lg font-semibold inline-block">View Full Menu</a>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {% for category in categories %}
+            <div>
+              <h3 class="text-3xl font-bold text-center mb-8 text-black">{{ category.name }}</h3>
+              <div class="space-y-6">
+                {% for item in category.menuitem_set.all %}
+                  {% if item.is_available %}
+                    <div class="flex items-center space-x-4 border card-menu">
+                      {% if item.image %}
+                        <img alt="{{ item.name }}" class="rounded-full object-cover w-16 h-16" src="{{ item.image.url }}" />
+                      {% else %}
+                        <div class="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
+                          <span class="text-gray-600 text-xs">No Image</span>
+                        </div>
+                      {% endif %}
+                      <div class="flex-grow">
+                        <h4 class="font-semibold text-gray-800 title-menu">{{ item.name }}</h4>
+                        <p class="text-sm text-gray-500">{{ item.description|truncatechars:50 }}</p>
+                      </div>
+                      <span class="text-black price-menu font-bold">${{ item.price }}</span>
+                    </div>
+                  {% endif %}
+                {% empty %}
+                  <div class="text-center text-gray-500 py-8">
+                    <p>Bu kategoriyada hozircha mahsulotlar mavjud emas.</p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        {% if categories %}
+          <div class="text-center mt-8">
+            <a href="{% url 'menu:menu' %}" class="btn-primary px-6 py-3 text-lg font-semibold inline-block">View Full Menu</a>
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="text-center py-20">
+          <h3 class="text-2xl text-gray-600 mb-4">Menyu ma'lumotlari hozircha mavjud emas</h3>
+          <p class="text-gray-500">Admin paneldan menyu kategoriyalari va mahsulotlarini qo'shishingiz mumkin.</p>
         </div>
       {% endif %}
     </div>
   </section>
-
+  {% comment %}menu items end{% endcomment %}
+  {% comment %}reservation start{% endcomment %}
   <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -139,76 +164,76 @@
             <h2 class="text-7xl font-great-vibes text-orange-400">Make Reservation</h2>
             <div class="w-20 h-1 bg-orange-500 my-4"></div>
           </div>
-          <form method="POST" action="{% url 'reservations:make_reservation' %}" class="space-y-4">
+          <form method="POST" action="{% url 'reservation:make_reservation' %}" class="space-y-4">
             {% csrf_token %}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700" for="id_first_name">First Name</label>
-                <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border" id="id_first_name" name="first_name" type="text" required />
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.first_name.id_for_label }}">First Name</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                  <div class="text-red-500 text-sm mt-1">{{ form.first_name.errors }}</div>
+                {% endif %}
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700" for="id_last_name">Last Name</label>
-                <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border" id="id_last_name" name="last_name" type="text" required />
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.last_name.id_for_label }}">Last Name</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                  <div class="text-red-500 text-sm mt-1">{{ form.last_name.errors }}</div>
+                {% endif %}
               </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700" for="id_phone">Phone</label>
-                <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border" id="id_phone" name="phone" type="tel" required />
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.phone.id_for_label }}">Phone</label>
+                {{ form.phone }}
+                {% if form.phone.errors %}
+                  <div class="text-red-500 text-sm mt-1">{{ form.phone.errors }}</div>
+                {% endif %}
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700" for="id_email">Email</label>
-                <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border" id="id_email" name="email" type="email" required />
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.email.id_for_label }}">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                  <div class="text-red-500 text-sm mt-1">{{ form.email.errors }}</div>
+                {% endif %}
               </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700" for="id_date">Date</label>
-                <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border" id="id_date" name="date" type="date" required />
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.date.id_for_label }}">Date</label>
+                {{ form.date }}
+                {% if form.date.errors %}
+                  <div class="text-red-500 text-sm mt-1">{{ form.date.errors }}</div>
+                {% endif %}
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700" for="id_time">Time</label>
-                <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border" id="id_time" name="time" required>
-                  <option value="">Select Time</option>
-                  <option value="13:00:00">1:00 PM</option>
-                  <option value="13:30:00">1:30 PM</option>
-                  <option value="14:00:00">2:00 PM</option>
-                  <option value="14:30:00">2:30 PM</option>
-                  <option value="15:00:00">3:00 PM</option>
-                  <option value="15:30:00">3:30 PM</option>
-                  <option value="16:00:00">4:00 PM</option>
-                  <option value="16:30:00">4:30 PM</option>
-                  <option value="17:00:00">5:00 PM</option>
-                  <option value="17:30:00">5:30 PM</option>
-                  <option value="18:00:00">6:00 PM</option>
-                  <option value="18:30:00">6:30 PM</option>
-                  <option value="19:00:00">7:00 PM</option>
-                  <option value="19:30:00">7:30 PM</option>
-                  <option value="20:00:00">8:00 PM</option>
-                  <option value="20:30:00">8:30 PM</option>
-                  <option value="21:00:00">9:00 PM</option>
-                </select>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.time.id_for_label }}">Time</label>
+                {{ form.time }}
+                {% if form.time.errors %}
+                  <div class="text-red-500 text-sm mt-1">{{ form.time.errors }}</div>
+                {% endif %}
               </div>
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700" for="id_guest_count">Number of Guests</label>
-              <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border" id="id_guest_count" name="guest_count" required>
-                <option value="1">1 Person</option>
-                <option value="2">2 People</option>
-                <option value="3">3 People</option>
-                <option value="4">4+ People</option>
-              </select>
+              <label class="block text-sm font-medium text-gray-700" for="{{ form.guest_count.id_for_label }}">Number of Guests</label>
+              {{ form.guest_count }}
+              {% if form.guest_count.errors %}
+                <div class="text-red-500 text-sm mt-1">{{ form.guest_count.errors }}</div>
+              {% endif %}
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700" for="id_special_requests">Special Requests</label>
-              <textarea class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border" id="id_special_requests" name="special_requests" rows="3"></textarea>
+              <label class="block text-sm font-medium text-gray-700" for="{{ form.special_requests.id_for_label }}">Special Requests</label>
+              {{ form.special_requests }}
+              {% if form.special_requests.errors %}
+                <div class="text-red-500 text-sm mt-1">{{ form.special_requests.errors }}</div>
+              {% endif %}
             </div>
             <button class="w-full bg-orange-500 text-white font-bold py-3 px-6 rounded-md hover:bg-orange-600 transition duration-300" type="submit">Make a Reservation</button>
           </form>
         </div>
         <div class="bg-gray-200 location flex items-center justify-center rounded-lg">
           {% if google_map_url %}
-            <iframe class="rounded-lg border-gray-300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.3268090152345!2d65.7851253!3d38.845298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f4ea6219349c8fb%3A0x9879a3d21a724458!2sASI%20Park!5e0!3m2!1sen!2s!4v1720971023456!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="rounded-lg border-gray-300" src="{{ google_map_url }}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           {% else %}
             <p class="text-gray-500">Map will be shown here</p>
           {% endif %}
@@ -216,6 +241,7 @@
       </div>
     </div>
   </section>
+  {% comment %}reservation end{% endcomment %}
   {% comment %}Chefs{% endcomment %}
   <section class="py-24 px-4 md:px-12">
     <div class="container mx-auto text-center">
@@ -263,6 +289,8 @@
     </div>
   </section>
   {% comment %}No django data{% endcomment %}
+
+  {% comment %}Customer start{% endcomment %}
   <section class="bg-gray-50 py-24 px-4 md:px-12">
     <div class="container mx-auto text-center">
       <h2 class="text-7xl font-great-vibes text-orange-400">Happy Customer</h2>
@@ -273,24 +301,74 @@
         <div class="bg-white p-8 rounded-lg shadow-lg">
           <img alt="Customer Ion Töne" class="w-24 h-24 rounded-full mx-auto -mt-16 border-4 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-KllsSTwcVLOGgSzOirZiOoETqUWF399oT0xiGwpNUXP8-870iCTrkQjzzznN6j_tK2zH7Y3Pl7yfx905_1w5e6LNl7admrR5gxUHg4IZVw7AcMOqnKNm2gJ71hl5TFY645v52IX-u2U1C4uauSZWXlMYDr3BJBtFjYeM4gQ57R7PHN2eHWhf9lTzYfYxXwd6_9XOSERyrhc3kQ68SH_jSuah_7tezBFD3fiwXawtLQB0i93JvABT7nbYn3mbmJHJuI137XYK1yMQ" />
           <p class="text-gray-600 italic my-6">"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."</p>
-          <p class="font-semibold">Ion Töne</p>
+          <p class="font-semibold text-black">Ion Töne</p>
           <p class="text-gray-500">Customer</p>
         </div>
         <div class="bg-white p-8 rounded-lg shadow-lg">
           <img alt="Customer Jason McClean" class="w-24 h-24 rounded-full mx-auto -mt-16 border-4 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkg6YBLCa7vi_m16-_9WEZARHqk-0jWA0gbgmDe9eUkHACZzJa-aXOon_UxRBt2NpUXEB9BTeNUGjTfRnbDoifiT07-4MMeyPp5A-bDge2vK3zqSjU2sbninTIcHj2euECLcq37g1liANv1hNTRVGuHgPqlZhTjfb6Zx76HVqGQ1KTNn546FI-WsOofZlb8KpHp_8BBrPXBXjwz4hmdhpjwIrBemlN_FO8nArIVjJ26OANvD4g5WHenxH8UkPpI73pkNX5IB0tAffp" />
           <p class="text-gray-600 italic my-6">"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."</p>
-          <p class="font-semibold">Jason McClean</p>
+          <p class="font-semibold text-black">Jason McClean</p>
           <p class="text-gray-500">Customer</p>
         </div>
         <div class="bg-white p-8 rounded-lg shadow-lg">
           <img alt="Customer Mon Stevenson" class="w-24 h-24 rounded-full mx-auto -mt-16 border-4 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAUwTVIsa5RskBo23ka3YVeRlA5CdPeNub0VCArXe3BqizWwJdLxa9nR8QYvmDSxJFk9mYzjq_f3oODVyncrPnWGVvV9CZ4D5W6cnAOWzrJGYdHdNDztD5yjvEf9s0d3069HsVMcMf8IpMv9PdWqvmPHjfxfCNpt-5w1AdDoMXTiDq1tKen8kt27cUgkoZuwOo54aOS5x-6uQtZzR9xcDMDe-_u1KPk9IMpU9uPziCIUVMZoQtQXcUayTMOJqrkx8i5Fv2h8bfaUNs" />
           <p class="text-gray-600 italic my-6">"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."</p>
-          <p class="font-semibold">Mon Stevenson</p>
+          <p class="font-semibold text-black">Mon Stevenson</p>
           <p class="text-gray-500">Customer</p>
         </div>
       </div>
     </div>
   </section>
+  {% comment %}Customer end{% endcomment %}
+
+  {% comment %}blog start{% endcomment %}
+  <section class="py-24 px-4 md:px-12">
+    <div class="container-blog mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-7xl font-great-vibes text-orange-400">Blog</h2>
+        <div class="w-20 h-1 bg-orange-500 my-4 mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for post in latest_posts %}
+          <div class="bg-white rounded-lg card-blog overflow-hidden">
+            {% if post.image %}
+              <img alt="{{ post.title }}" class="w-full h-72 object-cover" src="{{ post.image.url }}" />
+            {% else %}
+              <img alt="Default blog image" class="w-full h-72 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6L9B62I4KRvtrprM3G3Htq0_P0qVVhQrB3-u-D27PGOEBbpECpoZz48nFEUBaC5mTrWW-zWnYYoUYj6iy23i2glpDn4R9ljfXCKauvuAFhBNX4KlbohNKX-sWeAgrIkbnikQfdoM0-9S8sSkQKnGSmRhnlZVpNgIrqVDnIX0xf_N7ME9KPpUv4hFesag1W7w9bEqpXVomGFwy2r3_bQLM4ZoyS0VmW5JSrZV159S__ZynLplpBcFKgsAJgarw7NvHox6y3wNO8-Yr" />
+            {% endif %}
+            <div class="p-6">
+              <p class="text-gray-500 text-sm mb-2">{{ post.created_at|date:'F d, Y' }}</p>
+              <h3 class="text-xl font-semibold mb-4 text-black"><a href="{% url 'blog:blog_detail' post.slug %}">{{ post.title|truncatewords:4 }}</a></h3>
+              {% if post.excerpt %}
+                <p class="text-gray-600 mb-4 text-sm">{{ post.excerpt|truncatewords:20 }}</p>
+              {% else %}
+                <p class="text-gray-600 mb-4 text-sm">{{ post.content|truncatewords:20|striptags }}</p>
+              {% endif %}
+              <div class="flex justify-between items-center text-gray-500 text-sm">
+                <a class="hover:text-orange-600 flex items-center text-black" href="{% url 'blog:blog_detail' post.slug %}">
+                  <span>Read more</span>
+                  <svg class="w-5 h-5 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="col-span-full text-center mx-auto py-20">
+            <h2 class="text-3xl font-semibold text-gray-700 mb-4">No Blog Posts Yet</h2>
+            <p class="text-gray-500 mb-8">We're working on some amazing content for you. Please check back soon!</p>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="text-center mx-auto mt-8">
+        <a href="{% url 'menu:menu' %}" class="btn-primary px-6 py-3 text-lg font-semibold inline-block">View Full Menu</a>
+      </div>
+    </div>
+  </section>
+  {% comment %}blog end{% endcomment %}
+
+  {% comment %}instagram photos start{% endcomment %}
   <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
     <img alt="People dining in a restaurant" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUF6d61RsH7MjuIeP9Omd8-8DkXsR9SkVosIJd8TWFS9hoetGNTFUHvsgSj3YvUt8kRdV-pP4KSXeSaIQyIQorZx5W2o9Al-fhPmA79a6WalG6_ee4b08ikXBrI9XDHOB8aOLtuaSD1JgP31oJ-EjXtTVtiZKHSy1GkGQE5CRnjtvCyBSOpezka_fPg2b5zqeU21NgOVMtvyrDE1VxMOX8gtuAgQU9eobCO14zwih09auH1AMoYlIzRkSvNXRioBnRTk2-vwYy8vjf" />
     <img alt="A variety of delicious food dishes" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmnGFBAi2quxxuqRp-rUxl3PbcSMN76RqJ-YuiVvh-PEyg-5hyRMMq6XXGcVXXQRI_OnH7pBFLfgjX3oAPc6cG_GBN37sPx9SSXJlan-1rROUVcRZxWruz-RD4LpZ5sdmiFD4jnP1Zkc4UkeO6Pk7oNxKOorBJI2hHKTcfC9iIRu3kiB51MPPvpHbe85-piHiDAZUZxGufaME3YMBifFKMT43pEqQyJsU4Lm3Aj_B0n2qFCj4vG39xTOgB2fHLxBt4w9pui0zB34iW" />
@@ -299,4 +377,5 @@
     <img alt="Wine bottles and glasses on a table" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz8-1rcK8kjBl0vNDoCVvWwqdGrzRT7v4VXzMaDPnbCxRxWHi7cO8Lb_EDhIr4-P0Fmv_HWWRcKVYdlz3xUhd8o8duODIsAu6BWGWzIjQ0Lv7lKqAY8XrXDssMqTN_zs1jbMIvm96v__6oYHVyCuqgqvDh1i4KFaIe19tIg5b44IBfobGzKdsQAl1xZ4188wWv5Fh02i8bAptwfYl1cisbKBliXiSVr-PT7ymniCy6diNyJAhdVcOGYbjoEKrBNgMoSA62m6y5yUoB" />
     <img alt="A bartender pouring a drink" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdx7BaVSa10sHdaHIP7lN0z6-TBwHBpVEVwIk81bNid3TVBCrUF0i0gPLgaSXPXgDgfl5wlq_KeDagcoDcvLoka233LOQxLigpIJD5xIa_JwBgYNKtHQLqRA-sDRHb8knN-qmg2tQKIcfDedAfuohUjXDgs1qPko2cTRvPgZuvE4Dxzaq7DIu-PMooauFRIq_T5VNZqktcHGqtQ0wB7kgYi9YkJ8wMLFwyRkGVHzpdOqQOwuOH-3PCUwJIJDIsR5rjPypwLKnDziGj" />
   </section>
+  {% comment %}instagram photos ends{% endcomment %}
 {% endblock %}

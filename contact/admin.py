@@ -1,9 +1,10 @@
 from django.contrib import admin
 from .models import ContactMessage
+from unfold.admin import ModelAdmin
 
 
 @admin.register(ContactMessage)
-class ContactMessageAdmin(admin.ModelAdmin):
+class ContactMessageAdmin(ModelAdmin):
 
     list_display = ["name", "email", "subject", "is_read", "created_at"]
     list_filter = ["is_read", "created_at"]

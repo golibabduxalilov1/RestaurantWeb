@@ -13,12 +13,15 @@ SECRET_KEY = "django-insecure-6ylv&t)8qys_$62-y6($j!%t3d()vqt)v6x_i8e2+5^mzrbwqq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "unfold",  # before django.contrib.admin
+    "unfold.contrib.filters",  # optional, if special filters
+    "unfold.contrib.forms",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -55,6 +58,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.request",
             ],
         },
     },
@@ -125,3 +129,11 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "your-email@gmail.com"
 EMAIL_HOST_PASSWORD = "your-password"
 DEFAULT_FROM_EMAIL = "your-email@gmail.com"
+
+UNFOLD = {
+    "SITE_TITLE": "Your Admin Panel",
+    "SITE_HEADER": "MY RESTAURANT",
+    "SITE_URL": "/",
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": True,
+}

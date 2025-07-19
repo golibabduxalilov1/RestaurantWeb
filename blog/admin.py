@@ -1,9 +1,10 @@
 from django.contrib import admin
 from .models import BlogPost
+from unfold.admin import ModelAdmin
 
 
 @admin.register(BlogPost)
-class BlogPostAdmin(admin.ModelAdmin):
+class BlogPostAdmin(ModelAdmin):
 
     list_display = ["title", "author", "is_published", "created_at"]
     list_filter = ["is_published", "author", "created_at"]

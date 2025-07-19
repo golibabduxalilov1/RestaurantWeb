@@ -15,59 +15,140 @@
       <div>
         <h1 class="font-great-vibes text-6xl md:text-8xl text-orange-400">Contact Us</h1>
         <p class="text-lg mt-4">
-          <a class="hover:text-orang-600" href="#">HOME</a>
+          <a class="hover:text-orange-600" href="{% url 'core:home' %}">HOME</a>
           <span class="mx-2">&gt;</span> Contact <span class="mx-2">&gt;</span>
         </p>
       </div>
     </section>
+
     <section class="py-24 bg-white">
       <div class="container mx-auto px-4">
         <h2 class="text-7xl font-great-vibes text-orange-400 text-center">Contact information</h2>
         <div class="w-20 h-1 bg-orange-500 my-4 mx-auto"></div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-gray-600">
-          <div class="grid">
-            <p class="font-bold text-black">Address:</p>
-            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+
+        {% if contact_info %}
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-gray-600">
+            <div class="grid">
+              <p class="font-bold text-black">Address:</p>
+              <p>{{ contact_info.address|linebreaks }}</p>
+            </div>
+            <div>
+              <p class="font-bold text-black">Phone:</p>
+              <p>
+                <a class="text-orange-400" href="tel:{{ contact_info.phone }}">{{ contact_info.phone }}</a>
+              </p>
+            </div>
+            <div>
+              <p class="font-bold text-black">Email:</p>
+              <p>
+                <a class="text-orange-400" href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a>
+              </p>
+            </div>
           </div>
-          <div>
-            <p class="font-bold text-black">Phone:</p>
-            <p>
-              <a class="text-orange-400" href="tel:+1235235598">+ 1235 2355 98</a>
-            </p>
+
+          {% if contact_info.opening_hours %}
+            <div class="mt-8 text-center">
+              <h3 class="text-2xl font-semibold text-black mb-4">Opening Hours</h3>
+              <div class="text-gray-600">{{ contact_info.opening_hours|linebreaks }}</div>
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-gray-600">
+            <div class="grid">
+              <p class="font-bold text-black">Address:</p>
+              <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+            </div>
+            <div>
+              <p class="font-bold text-black">Phone:</p>
+              <p>
+                <a class="text-orange-400" href="tel:+1235235598">+ 1235 2355 98</a>
+              </p>
+            </div>
+            <div>
+              <p class="font-bold text-black">Email:</p>
+              <p>
+                <a class="text-orange-400" href="mailto:info@yoursite.com">info@yoursite.com</a>
+              </p>
+            </div>
           </div>
-          <div>
-            <p class="font-bold text-black">Email:</p>
-            <p>
-              <a class="text-orange-400" href="mailto:info@yoursite.com">info@yoursite.com</a>
-            </p>
-          </div>
-        </div>
+        {% endif %}
       </div>
     </section>
+
     <section class="bg-gray-50 py-24">
       <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-        <div class="bg-gray-200 h-full min-h-96 flex flex-col justify-center items-center text-gray-500">
-          <i class="material-icons text-4xl mb-4">error_outline</i>
-          <h3 class="text-xl font-semibold">Oops! Something went wrong.</h3>
-          <p class="text-sm">This page didn't load Google Maps correctly. See the JavaScript console for technical details.</p>
-        </div>
+        {% if google_map_url %}
+          <iframe class="rounded-lg border-gray-300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.3268090152345!2d65.7851253!3d38.845298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f4ea6219349c8fb%3A0x9879a3d21a724458!2sASI%20Park!5e0!3m2!1sen!2s!4v1720971023456!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        {% else %}
+          <div class="bg-gray-200 h-full min-h-96 flex flex-col justify-center items-center text-gray-500">
+            <i class="material-icons text-4xl mb-4">error_outline</i>
+            <h3 class="text-xl font-semibold">Oops! Something went wrong.</h3>
+          </div>
+        {% endif %}
+
         <div>
           <h2 class="text-7xl font-great-vibes text-orange-400">Contact Us</h2>
           <div class="w-20 h-1 bg-orange-500 my-4"></div>
 
-          <form action="#" class="space-y-4">
+          <form method="post" class="space-y-4">
+            {% csrf_token %}
+
             <div>
-              <input class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400" placeholder="Your Name" type="text" />
+              {{ form.name.label_tag }}
+              {{ form.name }}
+              {% if form.name.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                  {% for error in form.name.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
+                </div>
+              {% endif %}
             </div>
+
             <div>
-              <input class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400" placeholder="Your Email" type="email" />
+              {{ form.email.label_tag }}
+              {{ form.email }}
+              {% if form.email.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                  {% for error in form.email.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
+                </div>
+              {% endif %}
             </div>
+
             <div>
-              <input class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400" placeholder="Subject" type="text" />
+              {{ form.subject.label_tag }}
+              {{ form.subject }}
+              {% if form.subject.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                  {% for error in form.subject.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
+                </div>
+              {% endif %}
             </div>
+
             <div>
-              <textarea class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400" placeholder="Message" rows="6"></textarea>
+              {{ form.message.label_tag }}
+              {{ form.message }}
+              {% if form.message.errors %}
+                <div class="text-red-500 text-sm mt-1">
+                  {% for error in form.message.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
+                </div>
+              {% endif %}
             </div>
+
+            {% if form.non_field_errors %}
+              <div class="text-red-500 text-sm">
+                {% for error in form.non_field_errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+
             <div>
               <button class="bg-orange-400 text-white px-8 py-3 rounded-md hover:bg-orange-600 transition duration-300" type="submit">Send Message</button>
             </div>
@@ -75,6 +156,7 @@
         </div>
       </div>
     </section>
+
     <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
       <img alt="People dining in a restaurant" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUF6d61RsH7MjuIeP9Omd8-8DkXsR9SkVosIJd8TWFS9hoetGNTFUHvsgSj3YvUt8kRdV-pP4KSXeSaIQyIQorZx5W2o9Al-fhPmA79a6WalG6_ee4b08ikXBrI9XDHOB8aOLtuaSD1JgP31oJ-EjXtTVtiZKHSy1GkGQE5CRnjtvCyBSOpezka_fPg2b5zqeU21NgOVMtvyrDE1VxMOX8gtuAgQU9eobCO14zwih09auH1AMoYlIzRkSvNXRioBnRTk2-vwYy8vjf" />
       <img alt="A variety of delicious food dishes" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmnGFBAi2quxxuqRp-rUxl3PbcSMN76RqJ-YuiVvh-PEyg-5hyRMMq6XXGcVXXQRI_OnH7pBFLfgjX3oAPc6cG_GBN37sPx9SSXJlan-1rROUVcRZxWruz-RD4LpZ5sdmiFD4jnP1Zkc4UkeO6Pk7oNxKOorBJI2hHKTcfC9iIRu3kiB51MPPvpHbe85-piHiDAZUZxGufaME3YMBifFKMT43pEqQyJsU4Lm3Aj_B0n2qFCj4vG39xTOgB2fHLxBt4w9pui0zB34iW" />
@@ -84,4 +166,34 @@
       <img alt="A bartender pouring a drink" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdx7BaVSa10sHdaHIP7lN0z6-TBwHBpVEVwIk81bNid3TVBCrUF0i0gPLgaSXPXgDgfl5wlq_KeDagcoDcvLoka233LOQxLigpIJD5xIa_JwBgYNKtHQLqRA-sDRHb8knN-qmg2tQKIcfDedAfuohUjXDgs1qPko2cTRvPgZuvE4Dxzaq7DIu-PMooauFRIq_T5VNZqktcHGqtQ0wB7kgYi9YkJ8wMLFwyRkGVHzpdOqQOwuOH-3PCUwJIJDIsR5rjPypwLKnDziGj" />
     </section>
   </main>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    // Add styling to form fields dynamically
+    document.addEventListener('DOMContentLoaded', function () {
+      const formFields = document.querySelectorAll('form input, form textarea')
+      formFields.forEach((field) => {
+        field.classList.add('w-full', 'px-4', 'py-3', 'border', 'border-gray-300', 'rounded-md', 'focus:outline-none', 'focus:ring-2', 'focus:ring-orange-400')
+    
+        // Add placeholder text based on field name
+        if (field.name === 'name') {
+          field.placeholder = 'Your Name'
+        } else if (field.name === 'email') {
+          field.placeholder = 'Your Email'
+        } else if (field.name === 'subject') {
+          field.placeholder = 'Subject'
+        } else if (field.name === 'message') {
+          field.placeholder = 'Message'
+          field.rows = 6
+        }
+      })
+    
+      // Hide labels since we're using placeholders
+      const labels = document.querySelectorAll('form label')
+      labels.forEach((label) => {
+        label.style.display = 'none'
+      })
+    })
+  </script>
 {% endblock %}

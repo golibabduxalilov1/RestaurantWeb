@@ -1,0 +1,25 @@
+.bg-menu {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/bg_3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.location {
+  height: 40rem !important;
+}
+
+.card-menu {
+  padding: 30px 20px;
+  border-radius: 8px;
+}
+.card-menu img {
+  width: 100px;
+  height: 100px;
+}
+.title-menu {
+  font-size: 22px;
+}
+.price-menu {
+  font-size: 20px;
+}

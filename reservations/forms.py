@@ -24,7 +24,15 @@ class ReservationForm(forms.ModelForm):
         (time(21, 0), "9:00 PM"),
     ]
 
-    time = forms.ChoiceField(choices=TIME_CHOICES, widget=forms.Select())
+    time = forms.ChoiceField(
+        choices=TIME_CHOICES,
+        widget=forms.Select(
+            attrs={
+                "class": "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border",
+                "required": True,
+            }
+        ),
+    )
 
     class Meta:
         model = Reservation
@@ -39,6 +47,48 @@ class ReservationForm(forms.ModelForm):
             "special_requests",
         ]
         widgets = {
-            "date": forms.DateInput(attrs={"type": "date"}),
-            "special_requests": forms.Textarea(attrs={"rows": "3"}),
+            "first_name": forms.TextInput(
+                attrs={
+                    "class": "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border",
+                    "required": True,
+                }
+            ),
+            "last_name": forms.TextInput(
+                attrs={
+                    "class": "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border",
+                    "required": True,
+                }
+            ),
+            "email": forms.EmailInput(
+                attrs={
+                    "class": "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border",
+                    "required": True,
+                }
+            ),
+            "phone": forms.TextInput(
+                attrs={
+                    "class": "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border",
+                    "type": "tel",
+                    "required": True,
+                }
+            ),
+            "guest_count": forms.Select(
+                attrs={
+                    "class": "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border",
+                    "required": True,
+                }
+            ),
+            "date": forms.DateInput(
+                attrs={
+                    "type": "date",
+                    "class": "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border",
+                    "required": True,
+                }
+            ),
+            "special_requests": forms.Textarea(
+                attrs={
+                    "rows": 3,
+                    "class": "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 p-2 border",
+                }
+            ),
         }

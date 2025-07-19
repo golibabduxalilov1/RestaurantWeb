@@ -1,4 +1,5 @@
 from django.db import models
+from unfold.admin import ModelAdmin
 
 
 class ContactMessage(models.Model):

@@ -1,48 +1,36 @@
 {% if messages %}
   <div class="fixed top-20 right-4 z-40 space-y-2" id="messages-container">
     {% for message in messages %}
-      <div class="alert alert-{{ message.tags }} bg-{% if message.tags == 'success' %}
-          
-          green
-
-        {% elif message.tags == 'error' %}
-          
-          red
-
+      {% with tag=message.tags %}
+        {% if tag == 'success' %}
+          {% with color='green' %}
+            <div class="alert alert-{{ tag }} bg-{{ color }}-100 border border-{{ color }}-400 text-{{ color }}-700 px-4 py-3 rounded max-w-sm">
+              <div class="flex items-center justify-between">
+                <span>{{ message }}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-lg">&times;</button>
+              </div>
+            </div>
+          {% endwith %}
+        {% elif tag == 'error' %}
+          {% with color='red' %}
+            <div class="alert alert-{{ tag }} bg-{{ color }}-100 border border-{{ color }}-400 text-{{ color }}-700 px-4 py-3 rounded max-w-sm">
+              <div class="flex items-center justify-between">
+                <span>{{ message }}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-lg">&times;</button>
+              </div>
+            </div>
+          {% endwith %}
         {% else %}
-          
-          blue
-
-        {% endif %}-100 border border-{% if message.tags == 'success' %}
-          
-          green
-
-        {% elif message.tags == 'error' %}
-          
-          red
-
-        {% else %}
-          
-          blue
-
-        {% endif %}-400 text-{% if message.tags == 'success' %}
-          
-          green
-
-        {% elif message.tags == 'error' %}
-          
-          red
-
-        {% else %}
-          
-          blue
-
-        {% endif %}-700 px-4 py-3 rounded max-w-sm">
-        <div class="flex items-center justify-between">
-          <span>{{ message }}</span>
-          <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-lg">&times;</button>
-        </div>
-      </div>
+          {% with color='blue' %}
+            <div class="alert alert-{{ tag }} bg-{{ color }}-100 border border-{{ color }}-400 text-{{ color }}-700 px-4 py-3 rounded max-w-sm">
+              <div class="flex items-center justify-between">
+                <span>{{ message }}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-lg">&times;</button>
+              </div>
+            </div>
+          {% endwith %}
+        {% endif %}
+      {% endwith %}
     {% endfor %}
   </div>
 
