@@ -1,0 +1,9 @@
+.blog_detail-container {
+  max-width: 1140px !important;
+}
+.blog_detail-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/bg_4.jpg");
+  background-size: cover;
+  background-position: center;
+}

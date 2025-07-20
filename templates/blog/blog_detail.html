@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ post.title }} - Blog - Fine Dining Restaurant
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/blog_detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="blog_detail-bg h-[40vh] flex items-center justify-center text-center text-white">
+      <div>
+        <h1 class="font-great-vibes text-6xl md:text-8xl text-orange-400 capitalize">Blog</h1>
+        <p class="text-lg mt-4 uppercase">
+          <a class="hover:text-orange-600" href="{% url 'core:home' %}">HOME</a>
+          <span class="mx-2">&gt;</span>
+          <a class="hover:text-orange-600" href="{% url 'blog:blog_list' %}">Blog</a>
+          <span class="mx-2">&gt;</span> {{ post.title|truncatechars:10 }}
+        </p>
+      </div>
+    </section>
+
+    <section class="py-20">
+      <div class="blog_detail-container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="left-panel lg:col-span-2">
+          <h2 class="text-3xl font-semibold text-gray-900 mb-6">{{ post.title }}</h2>
+
+          <div class="mb-6 text-sm text-gray-500">
+            <span>{{ post.created_at|date:'F d, Y' }}</span>
+            {% if post.updated_at != post.created_at %}
+              <span class="mx-2">•</span>
+              <span>Updated: {{ post.updated_at|date:'F d, Y' }}</span>
+            {% endif %}
+          </div>
+
+          {% if post.image %}
+            <img alt="{{ post.title }}" class="my-6 rounded-lg w-full" src="{{ post.image.url }}" />
+          {% endif %}
+
+          {% if post.excerpt %}
+            <p class="mb-6 text-lg text-gray-600 italic">{{ post.excerpt }}</p>
+          {% endif %}
+
+          <div class="prose prose-lg max-w-none">
+            {% autoescape off %}
+              {{ post.content|linebreaks }}
+            {% endautoescape %}
+          </div>
+
+          <!-- Tags related to the post -->
+          <div class="mt-8 flex items-center space-x-2 text-gray-500">
+            <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Restaurant</span>
+            <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Fine Dining</span>
+            <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Cuisine</span>
+            <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Experience</span>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-gray-200">
+            <div class="flex items-center justify-between">
+              <div class="text-sm text-gray-500">
+                <span>Published on {{ post.created_at|date:'F d, Y' }}</span>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-500">Share:</span>
+                <a href="https://twitter.com/intent/tweet?text={{ post.title|urlencode }}&url={{ request.build_absolute_uri }}" target="_blank" class="text-blue-500 hover:text-blue-700">Twitter</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="text-blue-600 hover:text-blue-800">Facebook</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation to other posts -->
+          <div class="mt-12 pt-8 border-t border-gray-200">
+            <div class="flex justify-between items-center">
+              {% with previous_post=post.get_previous_by_created_at %}
+                {% if previous_post and previous_post.is_published %}
+                  <a href="{% url 'blog:blog_detail' previous_post.slug %}" class="text-black hover:text-orange-600 flex items-center"><span>&larr; Previous Post</span></a>
+                {% else %}
+                  <span></span>
+                {% endif %}
+              {% endwith %}
+
+              {% with next_post=post.get_next_by_created_at %}
+                {% if next_post and next_post.is_published %}
+                  <a href="{% url 'blog:blog_detail' next_post.slug %}" class="text-black hover:text-orange-600 flex items-center"><span>Next Post &rarr;</span></a>
+                {% else %}
+                  <span></span>
+                {% endif %}
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+
+        <div class="right-panel">
+          <div class="mb-12">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">Recent Posts</h3>
+            <div class="space-y-4">
+              {% for recent_post in recent_posts %}
+                <div class="flex items-center space-x-4">
+                  {% if recent_post.image %}
+                    <img alt="{{ recent_post.title }}" class="w-20 h-20 object-cover rounded-lg" src="{{ recent_post.image.url }}" />
+                  {% else %}
+                    <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
+                      <i class="material-icons text-gray-400">article</i>
+                    </div>
+                  {% endif %}
+                  <div>
+                    <a class="font-semibold text-gray-900 hover:text-yellow-500" href="{% url 'blog:blog_detail' recent_post.slug %}">{{ recent_post.title|truncatechars:50 }}</a>
+                    <p class="text-sm text-gray-500 mt-1">{{ recent_post.created_at|date:'M d, Y' }} • {{ recent_post.author.get_full_name|default:recent_post.author.username }}</p>
+                  </div>
+                </div>
+              {% empty %}
+                <p class="text-gray-500">No recent posts available.</p>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="mb-12">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">Related Posts</h3>
+            <div class="space-y-4">
+              {% for related_post in related_posts %}
+                <div class="flex items-center space-x-4">
+                  {% if related_post.image %}
+                    <img alt="{{ related_post.title }}" class="w-20 h-20 object-cover rounded-lg" src="{{ related_post.image.url }}" />
+                  {% else %}
+                    <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
+                      <i class="material-icons text-gray-400">article</i>
+                    </div>
+                  {% endif %}
+                  <div>
+                    <a class="font-semibold text-gray-900 hover:text-yellow-500" href="{% url 'blog:blog_detail' related_post.slug %}">{{ related_post.title|truncatechars:50 }}</a>
+                    <p class="text-sm text-gray-500 mt-1">{{ related_post.created_at|date:'M d, Y' }}</p>
+                  </div>
+                </div>
+              {% empty %}
+                <p class="text-gray-500">No related posts found.</p>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="mb-12">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">Make a Reservation</h3>
+            <p class="text-gray-600 mb-4">Ready to experience our cuisine? Book your table today for an exceptional dining experience.</p>
+            <a href="{% url 'reservation:make_reservation' %}" class="inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 transition-colors font-semibold">Reserve Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}

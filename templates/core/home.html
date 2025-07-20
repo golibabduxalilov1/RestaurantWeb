@@ -41,9 +41,11 @@
       </div>
 
       <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center">
-        <div class="relative max-w-4xl w-full mx-4">
-          <button onclick="closeVideo()" class="absolute -top-10 right-0 text-white text-2xl">&times;</button>
-          <iframe id="videoFrame" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+        <div class="">
+          <div class="relative max-w-4xl w-full mx-4">
+            <button onclick="closeVideo()" class="absolute -top-10 right-0 text-white text-2xl">&times;</button>
+            <iframe id="videoFrame" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -119,7 +121,7 @@
                   {% if item.is_available %}
                     <div class="flex items-center space-x-4 border card-menu">
                       {% if item.image %}
-                        <img alt="{{ item.name }}" class="rounded-full object-cover w-16 h-16" src="{{ item.image.url }}" />
+                        <img alt="{{ item.name }}" class="rounded-full object-cover" src="{{ item.image.url }}" />
                       {% else %}
                         <div class="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
                           <span class="text-gray-600 text-xs">No Image</span>
@@ -155,6 +157,7 @@
     </div>
   </section>
   {% comment %}menu items end{% endcomment %}
+
   {% comment %}reservation start{% endcomment %}
   <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
@@ -242,6 +245,7 @@
     </div>
   </section>
   {% comment %}reservation end{% endcomment %}
+
   {% comment %}Chefs{% endcomment %}
   <section class="py-24 px-4 md:px-12">
     <div class="container mx-auto text-center">
