@@ -1,11 +1,10 @@
 from pathlib import Path
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-6ylv&t)8qys_$62-y6($j!%t3d()vqt)v6x_i8e2+5^mzrbwqq"
@@ -115,21 +114,25 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# --------------------------------
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# --------------------------------
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+# --------------------------------
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "your-email@gmail.com"
-EMAIL_HOST_PASSWORD = "your-password"
-DEFAULT_FROM_EMAIL = "your-email@gmail.com"
+EMAIL_HOST_USER = config("EMAIL_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_PASS")
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+# -------------------------------
 UNFOLD = {
     "SITE_TITLE": "Your Admin Panel",
     "SITE_HEADER": "MY RESTAURANT",
