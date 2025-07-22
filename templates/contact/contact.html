@@ -45,31 +45,9 @@
               </p>
             </div>
           </div>
-
-          {% if contact_info.opening_hours %}
-            <div class="mt-8 text-center">
-              <h3 class="text-2xl font-semibold text-black mb-4">Opening Hours</h3>
-              <div class="text-gray-600">{{ contact_info.opening_hours|linebreaks }}</div>
-            </div>
-          {% endif %}
         {% else %}
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-gray-600">
-            <div class="grid">
-              <p class="font-bold text-black">Address:</p>
-              <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-            </div>
-            <div>
-              <p class="font-bold text-black">Phone:</p>
-              <p>
-                <a class="text-orange-400" href="tel:+1235235598">+ 1235 2355 98</a>
-              </p>
-            </div>
-            <div>
-              <p class="font-bold text-black">Email:</p>
-              <p>
-                <a class="text-orange-400" href="mailto:info@yoursite.com">info@yoursite.com</a>
-              </p>
-            </div>
+          <div class="text-center text-gray-500 py-8">
+            <p>Restaurant haqida hozircha ma'lumot mavjud emas.</p>
           </div>
         {% endif %}
       </div>
@@ -78,7 +56,7 @@
     <section class="bg-gray-50 py-24">
       <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         {% if google_map_url %}
-          <iframe class="rounded-lg border-gray-300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.3268090152345!2d65.7851253!3d38.845298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f4ea6219349c8fb%3A0x9879a3d21a724458!2sASI%20Park!5e0!3m2!1sen!2s!4v1720971023456!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe class="rounded-lg border-gray-300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.3268090152345!2d65.7851253!3d38.845298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f4ea6219349c8fb%3A0x9879a3d21a724458!2sASI%20Park!5e0!3m2!1sen!2s!4v1720971023456!5m2!1sen!2s" width="100%" height="100%" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         {% else %}
           <div class="bg-gray-200 h-full min-h-96 flex flex-col justify-center items-center text-gray-500">
             <i class="material-icons text-4xl mb-4">error_outline</i>
@@ -94,9 +72,7 @@
             {% csrf_token %}
 
             <div>
-              {{ form.name.label_tag }}
-              {{ form.name }}
-              {% if form.name.errors %}
+              {{ form.name.label_tag }} {{ form.name }} {% if form.name.errors %}
                 <div class="text-red-500 text-sm mt-1">
                   {% for error in form.name.errors %}
                     <p>{{ error }}</p>
@@ -106,9 +82,7 @@
             </div>
 
             <div>
-              {{ form.email.label_tag }}
-              {{ form.email }}
-              {% if form.email.errors %}
+              {{ form.email.label_tag }} {{ form.email }} {% if form.email.errors %}
                 <div class="text-red-500 text-sm mt-1">
                   {% for error in form.email.errors %}
                     <p>{{ error }}</p>
@@ -118,9 +92,7 @@
             </div>
 
             <div>
-              {{ form.subject.label_tag }}
-              {{ form.subject }}
-              {% if form.subject.errors %}
+              {{ form.subject.label_tag }} {{ form.subject }} {% if form.subject.errors %}
                 <div class="text-red-500 text-sm mt-1">
                   {% for error in form.subject.errors %}
                     <p>{{ error }}</p>
@@ -130,9 +102,7 @@
             </div>
 
             <div>
-              {{ form.message.label_tag }}
-              {{ form.message }}
-              {% if form.message.errors %}
+              {{ form.message.label_tag }} {{ form.message }} {% if form.message.errors %}
                 <div class="text-red-500 text-sm mt-1">
                   {% for error in form.message.errors %}
                     <p>{{ error }}</p>
