@@ -1,3 +1,11 @@
-- I'm starting 11 July
-- Models Completed 12 July
-- Admins Completed 13 July
+RestaurantWeb — quick start
+
+1) Clone and install: create a virtualenv, `pip install -r requirements.txt`.
+2) Env: copy `.env`, set `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS`, `POSTGRES_*`, email creds.
+3) Database: create your Postgres DB/user, then run `python manage.py migrate`.
+4) Assets: `python manage.py collectstatic` for production.
+5) Run: `python manage.py runserver` for local; use Gunicorn + Nginx on the server (IP e.g. 16.171.200.182).
+
+Notes
+- Static and media served via WhiteNoise + Nginx.
+- Toggle security flags (`CSRF/SESSION_COOKIE_SECURE`, `SECURE_SSL_REDIRECT`) when going live.
