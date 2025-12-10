@@ -7,12 +7,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "6ylv&t)8qys_$62-y6($j!%t3d()vqt)v6x_i8e2+5^mzrbwqq"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in config("ALLOWED_HOSTS", default="").split(",")
+    if host.strip()
+]
 
 
 # Application definition
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -71,11 +76,13 @@ WSGI_APPLICATION = "restaurant.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "resbase",
-        "USER": "postgres",
-        "PASSWORD": "abdu2002",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": config("POSTGRES_DB"),
+        "USER": config("POSTGRES_USER"),
+        "PASSWORD": config("POSTGRES_PASSWORD"),
+        "HOST": config("POSTGRES_HOST", default="127.0.0.1"),
+        "PORT": config("POSTGRES_PORT", default=5432, cast=int),
+        "CONN_MAX_AGE": config("DB_CONN_MAX_AGE", default=60, cast=int),
+        "ATOMIC_REQUESTS": True,
     }
 }
 
@@ -117,6 +124,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # --------------------------------
 MEDIA_URL = "/media/"
@@ -124,12 +132,12 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # --------------------------------
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST = config("EMAIL_HOST", default="smtp.gmail.com")
+EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
+EMAIL_HOST_USER = config("EMAIL_USER", default="")
+EMAIL_HOST_PASSWORD = config("EMAIL_PASS", default="")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default=EMAIL_HOST_USER)
 
 # -------------------------------
 UNFOLD = {
@@ -143,5 +151,12 @@ UNFOLD = {
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in config("CSRF_TRUSTED_ORIGINS", default="").split(",")
+    if origin.strip()
+]
+CSRF_COOKIE_SECURE = config("CSRF_COOKIE_SECURE", default=not DEBUG, cast=bool)
+SESSION_COOKIE_SECURE = config("SESSION_COOKIE_SECURE", default=not DEBUG, cast=bool)
+SECURE_SSL_REDIRECT = config("SECURE_SSL_REDIRECT", default=not DEBUG, cast=bool)
